@@ -1,0 +1,14 @@
+# venv folder
+venv/
+
+# Large testing files
+TESTDATA/
+
+# IDE and cache folders
+.vscode/
+__pycache__/
+.pytest_cache/
+
+# pyinstaller folders
+build/
+dist/
