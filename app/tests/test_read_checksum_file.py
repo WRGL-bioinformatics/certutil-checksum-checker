@@ -4,7 +4,7 @@ from app.functions.read_checksum_file import ChecksumFile
 
 @pytest.fixture
 def test_file():
-    return ChecksumFile("TESTDATA/TEST.zip.md5")
+    return ChecksumFile("app/tests/TESTDATA/test.txt.md5")
 
 
 def test_can_open_file(test_file):
@@ -27,19 +27,17 @@ def test_get_hash_algorithm(test_file):
 
 def test_get_file_name(test_file):
     """Get the name of the hashed file"""
-    assert test_file.file_name == "TEST.zip"
+    assert test_file.file_name == "test.txt"
 
 
 def test_get_hash_from_file(test_file):
     """Get the target file hash from it's checksum file"""
-    test_hash = "24 21 a3 7b ee b0 7e ab fd 0a 5b d2 44 10 ca 42 c5 17 e4 bd"
+    test_hash = "45d005931aac640fd2063be6a93b6c03e90a29f2"
     assert test_file.original_hash == test_hash
 
 
 def test_hash(test_file):
-    # test_hash_file = "TESTDATA/TEST.zip"
-    # test_hash_algorithm = "sha1"
-    test_hash = "24 21 a3 7b ee b0 7e ab fd 0a 5b d2 44 10 ca 42 c5 17 e4 bd"
+    test_hash = "45d005931aac640fd2063be6a93b6c03e90a29f2"
     # We have to manually remove spaces here, but will test a comparison function
     # separately which will do this for us
     test_hash = test_hash.replace(" ", "")
@@ -48,8 +46,8 @@ def test_hash(test_file):
 
 
 def test_compare_hash(test_file):
-    test_hash_file = "TESTDATA/TEST.zip"
+    test_hash_file = "app/tests/TESTDATA/test.txt"
     test_hash_algorithm = "sha1"
-    test_hash1 = "24 21 a3 7b ee b0 7e ab fd 0a 5b d2 44 10 ca 42 c5 17 e4 bd"
+    test_hash1 = "45d005931aac640fd2063be6a93b6c03e90a29f2"
     test_hash2 = test_file.hash(test_hash_file, test_hash_algorithm)
     assert test_file.compare_hash(test_hash1, test_hash2)

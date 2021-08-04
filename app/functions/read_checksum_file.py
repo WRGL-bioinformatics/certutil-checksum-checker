@@ -6,7 +6,7 @@ import sys
 class ChecksumFile(object):
     def __init__(self, filename=None):
         self.fname = pathlib.Path(filename)
-
+        
         if self.current_file_exists:
             self._hash_used = self.get_hash_used()
             self._file_name = self.get_file_name()

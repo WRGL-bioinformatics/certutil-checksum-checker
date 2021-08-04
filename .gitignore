@@ -2,7 +2,8 @@
 venv/
 
 # Large testing files
-TESTDATA/
+# DEV: we probably want to actually keep test files!
+#TESTDATA/
 
 # IDE and cache folders
 .vscode/
