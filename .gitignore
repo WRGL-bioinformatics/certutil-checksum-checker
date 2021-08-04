@@ -13,3 +13,5 @@ __pycache__/
 # pyinstaller folders
 build/
 dist/
+
+.coverage

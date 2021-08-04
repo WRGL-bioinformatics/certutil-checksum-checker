@@ -29,4 +29,4 @@ pylint:
 pytest:
  stage: Test
  script:
- - pytest
+ - pytest --cov/app.functions.read_checksum_file
