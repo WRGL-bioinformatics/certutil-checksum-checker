@@ -1,9 +1,17 @@
+"""
+Module docstring
+"""
+
 import hashlib
 import pathlib
 import sys
 
 
-class ChecksumFile(object):
+class ChecksumFile:
+    """
+    Class docstring
+    """
+
     def __init__(self, filename=None):
         self.fname = pathlib.Path(filename)
 
@@ -33,11 +41,11 @@ class ChecksumFile(object):
         # As far as checking that the file is correct, I'm just going to check the
         # extension. There's no real point doing more at this point.
         # Quit on any error here
-        if not self.fname.suffix == ".md5":
+        if self.fname.suffix != ".md5":
             sys.exit(1)
         try:
-            with open(self.fname) as f:
-                f.readline()
+            with open(self.fname) as file_handle:
+                file_handle.readline()
             return True
         except FileNotFoundError:
             sys.exit(1)
@@ -46,11 +54,13 @@ class ChecksumFile(object):
     def target_file_exists(self) -> bool:
         """Check the target file exists"""
         try:
-            with open(self._target_path, "rb") as f:
-                f.readline()
+            with open(self._target_path, "rb") as file_handle:
+                file_handle.readline()
             return True
         except FileNotFoundError:
-            print(f"ERROR: Cannot open target file {self._target_path}", file=sys.stderr)
+            print(
+                f"ERROR: Cannot open target file {self._target_path}", file=sys.stderr
+            )
             return False
 
     @property
@@ -90,15 +100,15 @@ class ChecksumFile(object):
 
     def get_hash_used(self) -> str:
         """Check the hash algorithm used"""
-        with open(self.fname) as f:
-            line: str = f.readline().split()[0]
+        with open(self.fname) as file_handle:
+            line: str = file_handle.readline().split()[0]
             return line
 
     def get_file_name(self) -> str:
         """Get the name of the hashed file"""
-        with open(self.fname) as f:
+        with open(self.fname) as file_handle:
             # File name is the last item on the first line
-            fname: str = f.readline().split()[-1]
+            fname: str = file_handle.readline().split()[-1]
             # Remove all non-alphanumeric characters from the ends of the string
             # NOTE: We have to escape '\' to avoid a warning
             fname = fname.strip("[,.\\:]")
@@ -114,11 +124,11 @@ class ChecksumFile(object):
 
     def get_hash_from_file(self):
         """TODO"""
-        with open(self.fname) as f:
+        with open(self.fname) as file_handle:
             # Read the first line, but do nothing
-            line = f.readline()
+            line = file_handle.readline()
             # The second line contains the hash
-            line = f.readline()
+            line = file_handle.readline()
             # Remove newlines, etc. from ends of the line
             line = line.strip()
             return line
@@ -138,8 +148,8 @@ class ChecksumFile(object):
 
         # Hash the file in chunks, as this is more memory efficient - particularly for
         # larger files like the ones we will want to hash.
-        with open(fname, "rb") as f:
-            for chunk in iter(lambda: f.read(4096), b""):
+        with open(fname, "rb") as file_handle:
+            for chunk in iter(lambda: file_handle.read(4096), b""):
                 file_hash.update(chunk)
 
         # The hexdigest is the normal text representation, without any spaces
