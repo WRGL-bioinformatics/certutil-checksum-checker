@@ -1,14 +1,11 @@
 # venv folder
 venv/
 
-# Large testing files
-# DEV: we probably want to actually keep test files!
-#TESTDATA/
-
 # IDE and cache folders
 .vscode/
 __pycache__/
 .pytest_cache/
+.mypy_cache/
 
 # pyinstaller folders
 build/

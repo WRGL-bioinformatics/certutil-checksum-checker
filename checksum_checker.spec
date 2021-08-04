@@ -4,10 +4,10 @@ block_cipher = None
 
 
 a = Analysis(['checksum_checker.py'],
-             pathex=['C:\\Users\\ben\\Documents\\work\\checksum_checker'],
+             pathex=['/app'],
              binaries=[],
-             datas=[('C:\\Users\\ben\\Documents\\work\\checksum_checker\\app\\static\\WRGL_logo.png', 'app\\static'),
-                    ('C:\\Users\\ben\\Documents\\work\\checksum_checker\\app\\static\\favicon.ico', 'app\\static')],
+             datas=[('app/static/WRGL_logo.png', 'app/static'),
+                    ('app/static/favicon.ico', 'app/static')],
              hiddenimports=['tkinter'],
              hookspath=[],
              runtime_hooks=[],
