@@ -19,6 +19,12 @@ mypy:
   script:
   - mypy checksum_checker.py
 
+pylint:
+  stage: Static Analysis
+  script:
+  - pylint checksum_checker.py
+  - pylint app/*/*.py
+
 pytest:
  stage: Test
  script:
