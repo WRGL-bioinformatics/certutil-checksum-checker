@@ -50,7 +50,7 @@ class ChecksumFile(object):
                 f.readline()
             return True
         except FileNotFoundError:
-            print(f"ERROR: Cannot open target file {self._target_path}", file=sys.sterr)
+            print(f"ERROR: Cannot open target file {self._target_path}", file=sys.stderr)
             return False
 
     @property
@@ -91,23 +91,20 @@ class ChecksumFile(object):
     def get_hash_used(self) -> str:
         """Check the hash algorithm used"""
         with open(self.fname) as f:
-            line = f.readline()
-            line = line.split()
-            return line[0]
+            line: str = f.readline().split()[0]
+            return line
 
-    def get_file_name(self):
+    def get_file_name(self) -> str:
         """Get the name of the hashed file"""
         with open(self.fname) as f:
-            line = f.readline()
-            line = line.split()
             # File name is the last item on the first line
-            fname = line[-1]
+            fname: str = f.readline().split()[-1]
             # Remove all non-alphanumeric characters from the ends of the string
             # NOTE: We have to escape '\' to avoid a warning
             fname = fname.strip("[,.\\:]")
             return fname
 
-    def get_file_path(self):
+    def get_file_path(self) -> str:
         """Get the path to the target file
         relative to the current lcoation of the checksum file"""
         folder_path = pathlib.Path(self.fname).resolve().parent
