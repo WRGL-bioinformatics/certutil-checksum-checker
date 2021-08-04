@@ -13,7 +13,7 @@ flake8:
   - flake8 --max-line-length=120 checksum_checker.py
   - flake8 --max-line-length=120 app/*/*.py
 
-  mypy:
-   stage: Static Analysis
-   script:
-   - mypy checksum_checker.py
+mypy:
+  stage: Static Analysis
+  script:
+  - mypy checksum_checker.py
