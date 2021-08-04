@@ -21,12 +21,12 @@ mypy:
 
 pylint:
   stage: Static Analysis
+  allow_failure: true
   script:
   - pylint checksum_checker.py
   - pylint app/*/*.py
 
 pytest:
  stage: Test
- allow_failure: true
  script:
  - pytest

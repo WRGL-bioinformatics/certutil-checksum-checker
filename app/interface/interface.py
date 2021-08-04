@@ -179,11 +179,13 @@ transfer and check again.
         # I can't remember 100% what the _MEIPASS stuff is for, but it raises and
         # error in pylint. Investigate more and maybe remove? I think it's needed
         # when packaged as an exe
+        # pylint: disable=protected-access
+        # pylint: disable=no-member
         if hasattr(sys, "_MEIPASS"):
             return os.path.join(sys._MEIPASS, relative_path)
         return os.path.join(os.path.abspath("."), relative_path)
 
 
 if __name__ == "__main__":
-    #So that this can be run by iteself, e.g. for testing
+    # So that this can be run by iteself, e.g. for testing
     form = ChecksumChecker()
