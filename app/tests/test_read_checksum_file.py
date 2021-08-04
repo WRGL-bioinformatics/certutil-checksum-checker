@@ -52,4 +52,4 @@ def test_compare_hash(test_file):
     test_hash_algorithm = "sha1"
     test_hash1 = "24 21 a3 7b ee b0 7e ab fd 0a 5b d2 44 10 ca 42 c5 17 e4 bd"
     test_hash2 = test_file.hash(test_hash_file, test_hash_algorithm)
-    assert test_file.compare_hash(test_hash1, test_hash2) == True
+    assert test_file.compare_hash(test_hash1, test_hash2)

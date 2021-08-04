@@ -59,7 +59,7 @@ Support: ben.sanders@nhs.net
 -------------------------
 
 Select .md5 checksum files to confirm using the "Select Files" button, then
-click the "Check" button to start. This may take some time, particularly if the 
+click the "Check" button to start. This may take some time, particularly if the
 files to be checked are very large.
 
 When complete, a summary list of any failing files will be shown.

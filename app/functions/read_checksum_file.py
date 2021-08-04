@@ -15,13 +15,8 @@ class ChecksumFile(object):
             self._new_hash = self.hash(self._target_path, self.hash_used)
             self._hash_match = False
             if self.compare_hash(self._original_hash, self._new_hash):
-                #print(f"INFO: {self._file_name}: Hashes match", file=sys.stderr)
                 self._hash_match = True
             else:
-                #print(
-                    #f"WARNING: {self._file_name}: Hash from checksum file does not match that generated from target file.",
-                #    file=sys.stderr,
-                #)
                 self._hash_match = False
         else:
             self._hash_match = False
@@ -39,14 +34,12 @@ class ChecksumFile(object):
         # extension. There's no real point doing more at this point.
         # Quit on any error here
         if not self.fname.suffix == ".md5":
-            #print(f"ERROR: File does not appear to be a checksum file", file=sys.stderr)
             sys.exit(1)
         try:
             with open(self.fname) as f:
                 f.readline()
             return True
         except FileNotFoundError:
-            #print(f"ERROR: Cannot find specified file {self.fname}", file=sys.stderr)
             sys.exit(1)
 
     @property
@@ -116,7 +109,6 @@ class ChecksumFile(object):
 
     def get_file_path(self):
         """Get the path to the target file
-        
         relative to the current lcoation of the checksum file"""
         folder_path = pathlib.Path(self.fname).resolve().parent
         target_path = folder_path / self._file_name
